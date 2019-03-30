@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText editTextUsername, editTextEmail, editTextPassword;
+    EditText editTextUsername, editTextEmail, editTextPassword, editTextMobile ;
     ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
+        editTextMobile = findViewById(R.id.editTextMobile);
 
 
         findViewById(R.id.buttonRegister).setOnClickListener(new View.OnClickListener() {
@@ -65,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         final String username = editTextUsername.getText().toString().trim();
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
+        final String mobile = editTextMobile.getText().toString().trim();
 
 
         //first we will do the validations
@@ -91,6 +93,11 @@ public class RegisterActivity extends AppCompatActivity {
             editTextPassword.requestFocus();
             return;
         }
+        if (TextUtils.isEmpty(mobile)) {
+            editTextUsername.setError("Please enter Mobile number");
+            editTextUsername.requestFocus();
+            return;
+        }
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER,
                 new Response.Listener<String>() {
@@ -112,7 +119,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 User user = new User(
                                         userJson.getInt("id"),
                                         userJson.getString("username"),
-                                        userJson.getString("email")
+                                        userJson.getString("email"),
+                                        userJson.getString("mobile")
 
                                 );
 
@@ -139,9 +147,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("username", username);
+                params.put("name", username);
                 params.put("email", email);
                 params.put("password", password);
+                params.put("mobile", mobile);
                 return params;
             }
         };

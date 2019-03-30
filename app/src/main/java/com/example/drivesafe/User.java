@@ -2,12 +2,13 @@ package com.example.drivesafe;
 
 public class User {
     private int id;
-    private String name, email;
+    private String name, email, mobile;
 
-    public User(int id, String name, String email) {
+    public User(int id, String name, String email, String mobile) {
         this.id = id;
         this.email = email;
         this.name = name;
+        this.mobile = mobile;
     }
 
     public int getId() {
@@ -34,6 +35,13 @@ public class User {
         this.email = email;
     }
 
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 }
 
 

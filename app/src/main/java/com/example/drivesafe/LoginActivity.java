@@ -97,7 +97,8 @@ public class LoginActivity extends AppCompatActivity {
                                 User user = new User(
                                         userJson.getInt("id"),
                                         userJson.getString("username"),
-                                        userJson.getString("email")
+                                        userJson.getString("email"),
+                                        userJson.getString("mobile")
                                 );
 
                                 //storing the user in shared preferences
@@ -124,8 +125,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("username", username);
+                params.put("email", username);
                 params.put("password", password);
+                params.put("client","1");
                 return params;
             }
         };

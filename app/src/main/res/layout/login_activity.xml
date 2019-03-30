@@ -65,16 +65,16 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserName"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.205" />
 
     <TextView
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="Not Registered?\nCreate New Account."
         app:layout_constraintBottom_toBottomOf="parent"

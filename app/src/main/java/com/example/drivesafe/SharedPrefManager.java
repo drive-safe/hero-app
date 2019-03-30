@@ -9,6 +9,7 @@ public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "volleyregisterlogin";
     private static final String KEY_USERNAME = "keyusername";
     private static final String KEY_EMAIL = "keyemail";
+    private static final String KEY_MOBILE = "keymobile";
     private static final String KEY_ID = "keyid";
     private static SharedPrefManager mInstance;
     private static Context ctx;
@@ -30,6 +31,7 @@ public class SharedPrefManager {
         editor.putInt(KEY_ID, user.getId());
         editor.putString(KEY_USERNAME, user.getName());
         editor.putString(KEY_EMAIL, user.getEmail());
+        editor.putString(KEY_MOBILE, user.getMobile());
         editor.apply();
     }
 
@@ -45,7 +47,8 @@ public class SharedPrefManager {
         return new User(
                 sharedPreferences.getInt(KEY_ID, -1),
                 sharedPreferences.getString(KEY_USERNAME, null),
-                sharedPreferences.getString(KEY_EMAIL, null)
+                sharedPreferences.getString(KEY_EMAIL, null),
+                sharedPreferences.getString(KEY_MOBILE, null)
         );
     }
 
