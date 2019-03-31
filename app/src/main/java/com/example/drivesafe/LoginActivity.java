@@ -1,6 +1,8 @@
 package com.example.drivesafe;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -27,12 +29,14 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
+    public static final String MyPREFERENCES = "MyPrefs" ;
     EditText etName, etPassword;
     ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+
 
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
@@ -107,10 +111,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
-                           // Toast.makeText(LoginActivity.this,response.toString(), Toast.LENGTH_SHORT).show();
+                            SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putString("key", response.getJSONObject("data").get("id").toString());
+                            editor.commit();
+                            Toast.makeText(LoginActivity.this,response.getJSONObject("data").get("id").toString(), Toast.LENGTH_SHORT).show();
                             VolleyLog.v("Response:%n %s", response.toString(4));
                             Intent  intent = new Intent(getApplicationContext(),MapsActivity.class);
+                            intent.putExtra("id", response.getJSONObject("data").get("id").toString());
                             startActivity(intent);
                             finish();
                         } catch (JSONException e) {
