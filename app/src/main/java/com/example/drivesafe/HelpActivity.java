@@ -177,7 +177,7 @@ public class HelpActivity extends FragmentActivity implements OnMapReadyCallback
         mRequestQueue.add(req);
 
         //Place current location marker
-        LatLng latLng = new LatLng( driverlong, driverlat);
+        LatLng latLng = new LatLng(driverlat, driverlong);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("Accident Position");
