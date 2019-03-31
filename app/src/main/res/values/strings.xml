@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DriveSafe Hero</string>
     <string name="google_maps_key">AIzaSyBTHEMtmkHbRa2F0Wv3CpbC4ZvYkP-7wXw</string>
+    <string name="msg_token_fmt"></string>
 </resources>
