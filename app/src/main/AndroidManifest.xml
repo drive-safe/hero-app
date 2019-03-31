@@ -29,6 +29,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".MapsActivity" />
         <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".HelpActivity"></activity>
         <service
             android:name="com.example.drivesafe.FirebaseMessagingService"
             android:exported="false">

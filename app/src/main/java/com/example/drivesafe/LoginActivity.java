@@ -117,10 +117,18 @@ public class LoginActivity extends AppCompatActivity {
                             editor.commit();
                             Toast.makeText(LoginActivity.this,response.getJSONObject("data").get("id").toString(), Toast.LENGTH_SHORT).show();
                             VolleyLog.v("Response:%n %s", response.toString(4));
-                            Intent  intent = new Intent(getApplicationContext(),MapsActivity.class);
-                            intent.putExtra("id", response.getJSONObject("data").get("id").toString());
-                            startActivity(intent);
-                            finish();
+
+                            if(response.getJSONObject("data").get("status").toString() != "0") {
+                                Intent  intent = new Intent(getApplicationContext(),MapsActivity.class);
+                                intent.putExtra("id", response.getJSONObject("data").get("id").toString());
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Intent  intent = new Intent(getApplicationContext(),HelpActivity.class);
+                                intent.putExtra("id", response.getJSONObject("data").get("id").toString());
+                                startActivity(intent);
+                                finish();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
