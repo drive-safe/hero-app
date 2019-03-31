@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this,response.getJSONObject("data").get("id").toString(), Toast.LENGTH_SHORT).show();
                             VolleyLog.v("Response:%n %s", response.toString(4));
 
-                            if(response.getJSONObject("data").get("status").toString() != "0") {
+                            if(response.getJSONObject("data").get("status").toString() == "0") {
                                 Intent  intent = new Intent(getApplicationContext(),MapsActivity.class);
                                 intent.putExtra("id", response.getJSONObject("data").get("id").toString());
                                 startActivity(intent);

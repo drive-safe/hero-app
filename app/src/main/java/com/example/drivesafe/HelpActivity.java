@@ -46,8 +46,8 @@ public class HelpActivity extends FragmentActivity implements OnMapReadyCallback
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
     String userId;
-    String driverlat;
-    String driverlong;
+    Double driverlat;
+    Double driverlong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +70,9 @@ public class HelpActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            Toast.makeText(HelpActivity.this,"location fetched", Toast.LENGTH_SHORT).show();
+                            driverlat = Double.parseDouble(response.getJSONObject("data").get("latitude").toString());
+                            driverlong = Double.parseDouble(response.getJSONObject("data").get("longitude").toString());
+                            Toast.makeText(HelpActivity.this,response.toString(), Toast.LENGTH_SHORT).show();
                             VolleyLog.v("Response:%n %s", response.toString(4));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -175,7 +177,7 @@ public class HelpActivity extends FragmentActivity implements OnMapReadyCallback
         mRequestQueue.add(req);
 
         //Place current location marker
-        LatLng latLng = new LatLng( Double.parseDouble(driverlong), Double.parseDouble(driverlat));
+        LatLng latLng = new LatLng( driverlong, driverlat);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("Accident Position");
